@@ -1,0 +1,25 @@
+.section-editor-choice .card-heading {
+  /* width: 40%; */
+  /* margin-left: 0; */
+  font-size: var(--fs3);
+}
+.editor-choice-stories .card-img-holder {
+  width: 15rem;
+  aspect-ratio: 1/1;
+  /* height: 20rem; */
+}
+
+.editor-choice-stories img {
+  /* transform: unset; */
+  width: 15rem;
+  object-fit: contain;
+}
+
+.section-editor-choice .heading {
+  font-size: var(--fs3);
+  color: var(--black);
+}
+
+.section-editor-choice {
+  flex: 1;
+}

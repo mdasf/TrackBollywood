@@ -1,0 +1,8 @@
+.admin-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 180rem;
+  margin-inline: auto;
+  height: 100%;
+}

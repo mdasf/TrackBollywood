@@ -1,0 +1,8 @@
+.section-latest {
+  flex: 2;
+}
+
+.section-latest .container-wrapper {
+  width: 100%;
+  /* margin-left: auto; */
+}

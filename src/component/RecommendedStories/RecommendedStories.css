@@ -1,0 +1,50 @@
+.section-recommonded {
+  /* position: absolute; */
+  /* top: 30%; */
+  /* right: 3rem; */
+  /* transform: translateY(-30%); */
+  /* margin-inline-start: 3rem; */
+  width: 40rem;
+}
+
+.section-recommonded .card-heading {
+  /* width: 40%; */
+  /* margin-left: 0; */
+  font-size: var(--fs3) !important;
+}
+
+.recommonded-stories {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.recommonded-stories .card {
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.recommonded-stories .card-img-holder {
+  width: 10rem;
+  aspect-ratio: 1/1;
+  /* height: 20rem; */
+}
+
+.recommonded-stories img {
+  /* transform: unset; */
+  width: 10rem;
+  object-fit: contain;
+}
+
+.recommonded-stories .card span {
+  display: inline-block;
+}
+
+.section-recommonded .heading {
+  font-size: var(--fs3);
+  color: var(--color-pink-800);
+}
+
+/* .section-recommonded {
+  flex: 1;
+} */

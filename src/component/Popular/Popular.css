@@ -1,0 +1,36 @@
+.popular-stories .upper-list,
+.popular-stories .lower-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  justify-content: center;
+  /* justify-content: space-between; */
+}
+
+.popular-stories .lower-list {
+  margin-block-start: 4rem;
+}
+
+.popular-stories li {
+  /* flex-basis: 0; */
+  flex: 1;
+}
+
+.popular-stories .upper-list .card-img-holder {
+  /* width: 32rem; */
+  height: 35rem;
+}
+.popular-stories .lower-list .card-img-holder {
+  height: 25rem;
+}
+
+.popular-stories img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.popular-stories .upper-list .card-heading {
+  font-size: var(--fs7);
+}

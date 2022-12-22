@@ -1,0 +1,135 @@
+.section-new-post {
+  /* width: 50%; */
+  padding-top: 1rem;
+  padding-left: 3rem;
+  /* background: var(--color-pink-100); */
+  flex: 1;
+  /* background: linear-gradient(
+    to bottom,
+    var(--color-pink-800),
+    var(--color-pink-800)
+  ); */
+}
+
+.section-new-post .heading {
+  color: var(--black);
+}
+
+.edit-post-container {
+  /* background: var(--color-pink-200); */
+  /* max-width: 70rem; */
+  /* width: max(70rem, 70%); */
+  /* height: 80vh; */
+  /* background: var(--color-pink-100); */
+  padding: 3rem;
+  position: relative;
+}
+
+.edit-post-container label {
+  color: var(--color-pink-800);
+}
+
+.edit-post-container input,
+.edit-post-container textarea {
+  font-size: var(--fs3);
+  padding: 1rem;
+  outline: 1.2px solid hsla(0, 0%, 0%, 0.152);
+  /* outline: 1.2px solid var(--color-yellow); */
+  background-color: white;
+  transition: all 200ms;
+}
+
+.edit-post-container input:is(:focus-visible),
+.edit-post-container textarea:is(:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 2px 1px var(--color-pink-800);
+}
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  gap: 0.2rem;
+}
+
+.col-2 {
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  /* gap: 10rem; */
+  /* width: 100%; */
+}
+
+.col-2:first-child {
+  /* flex: 1; */
+  /* flex-basis: 0;
+  width: 80% !important; */
+}
+.col-2:nth-child(2) {
+  /* flex: 1;
+  width: 70rem; */
+}
+.edit-post-container textarea {
+  overflow-y: scroll;
+}
+
+.edit-post-container .img-upload {
+  position: absolute;
+  top: 0rem;
+  right: 3rem;
+  outline: none;
+  width: max-content;
+  /* display: none; */
+  /* background: var(--color-pink-800); */
+}
+
+.img-upload label {
+  cursor: pointer;
+  color: var(--white);
+  padding: 1rem 2rem;
+  background: var(--color-pink-800);
+}
+
+.edit-post-container .img-upload input {
+  display: none;
+}
+
+.edit-post-container .btn:hover {
+  transform: none;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.btn-group .btn {
+  padding: 0.6rem 2rem;
+}
+
+.btn-submit {
+  background-color: var(--color-pink-800);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  /* color: ; */
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--clr-pink-800);
+}
