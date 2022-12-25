@@ -2,6 +2,7 @@
   /* width: 40%; */
   /* margin-left: 0; */
   font-size: var(--fs3);
+  font-weight: 500;
 }
 .editor-choice-stories .card-img-holder {
   width: 15rem;
@@ -16,10 +17,10 @@
 }
 
 .section-editor-choice .heading {
-  font-size: var(--fs3);
+  font-size: var(--fs5);
   color: var(--black);
 }
 
-.section-editor-choice {
+/* .section-editor-choice {
   flex: 1;
-}
+} */

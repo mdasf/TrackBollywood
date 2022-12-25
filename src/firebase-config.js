@@ -9,11 +9,11 @@ import { getStorage } from "firebase/storage"; //images
 const firebaseConfig = {
   apiKey: "AIzaSyDdHqHhmvynl-akie-YqPF2uuNrHmay7Hw",
   authDomain: "trackbollywood-8b08e.firebaseapp.com",
-  databaseURL: "trackbollywood-8b08e",
-  projectId: "trackbollywood-8b08e.appspot.com",
-  storageBucket: "416550912018",
-  messagingSenderId: "1:416550912018:web:85b8b52ea87ff6b19e98cb",
-  appId: "G-YZFB91R6JH",
+  projectId: "trackbollywood-8b08e",
+  storageBucket: "trackbollywood-8b08e.appspot.com",
+  messagingSenderId: "416550912018",
+  appId: "1:416550912018:web:85b8b52ea87ff6b19e98cb",
+  measurementId: "G-YZFB91R6JH",
 };
 
 // Initialize Firebase

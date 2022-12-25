@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StoryGenerator } from "../index.js";
+import { StoryGenerator } from "../../index.js";
 
 import "./PreviewPost.css";
 const PreviewPost = ({ postDetail }) => {

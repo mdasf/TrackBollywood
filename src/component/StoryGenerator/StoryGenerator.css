@@ -18,7 +18,7 @@
   font-size: var(--fs8);
 }
 
-.summary {
+.preview .summary {
   margin-block: 2rem;
   /* margin-bottom: 4rem; */
 }
@@ -46,7 +46,7 @@
 
 .content-img-holder {
   width: 70%;
-  height: 25rem;
+  /* height: 25rem; */
   margin-inline: auto;
   overflow: hidden;
 }
@@ -55,6 +55,11 @@
   width: 100%;
   object-fit: contain;
   object-position: center;
+}
+
+.content-img-holder .caption {
+  font-size: var(--fs2);
+  text-align: center;
 }
 
 .content-text {

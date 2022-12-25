@@ -13,8 +13,8 @@
   overflow-y: scroll;
 }
 
-.preview-post-container:-webkit-scrollbar {
-  /* width: 5px;
+/* .preview-post-container::-webkit-scrollbar {
+  width: 5px;
   height: 8px;
 } */
 

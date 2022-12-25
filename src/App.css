@@ -91,7 +91,7 @@
 
   a{
 
-    font:inherit;
+    /* font:inherit; */
     text-decoration: none;
     color: inherit;
     cursor: pointer;

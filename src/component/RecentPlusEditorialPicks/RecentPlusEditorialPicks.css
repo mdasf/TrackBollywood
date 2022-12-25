@@ -1,6 +1,13 @@
 .two-section {
   display: flex;
-  /* margin-inline: 10%; */
+  flex-wrap: wrap;
+  margin-inline: 10%;
+}
+.two-section .section-latest {
+  flex: 2;
+}
+.two-section .section-editor-choice {
+  flex: 1;
 }
 
 .latest-stories,

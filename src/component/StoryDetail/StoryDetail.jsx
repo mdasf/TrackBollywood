@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Header,
   Footer,
@@ -9,6 +9,10 @@ import {
 import images from "../../assets";
 
 import "./StoryDetail.css";
+import useFetch from "../useFetch.jsx";
+import { collection, doc, getDoc } from "firebase/firestore";
+import { firestore } from "../../firebase-config.js";
+import { useParams } from "react-router-dom";
 
 // const storyData = {
 //   title:,
@@ -30,42 +34,64 @@ import "./StoryDetail.css";
 // };
 
 function StoryDetail() {
+  const [postData, setPostData] = useState();
+  const { pid } = useParams();
+  console.log(pid);
+
+  useEffect(() => {
+    const getPost = async () => {
+      const docSnap = await getDoc(doc(firestore, "posts", `${pid}`));
+      // console.log(docSnap.data());
+      setPostData(docSnap.data());
+    };
+    getPost();
+  }, []);
+
   return (
-    <div className="story-page-wrapper">
-      <Header />
-      <section className="section story-detail">
-        <div className="container">
-          <h1 className="story-title">
-            EXCLUSIVE: 'My dad returned with a Singham tattoo after watching the
-            film’ reveals Cirkus actress Pooja Hegde
-          </h1>
+    postData && (
+      <div className="story-page-wrapper">
+        <Header />
+        <section className="section story-detail">
+          <div className="container">
+            <h1 className="story-title">
+              {/* EXCLUSIVE: 'My dad returned with a Singham tattoo after watching the
+            film’ reveals Cirkus actress Pooja Hegde */}
+              {postData.title}
+            </h1>
 
-          <p className="story-summary">
-            In an exclusive conversation with Pinkvilla, Cirkus actress Pooja
+            <p className="story-summary">
+              {/* In an exclusive conversation with Pinkvilla, Cirkus actress Pooja
             Hegde shared that her father is a huge fan of Rohit Shetty. So much
-            so, that he got a Singham tattoo after watching the movie!
-          </p>
-
-          <div className="story-meta-info">
-            <p>
-              Written by <span className="author">Mohd Akib</span>
+            so, that he got a Singham tattoo after watching the movie! */}
+              {postData.summary}
             </p>
-            <p>
-              Published on <span className="date">Dec 20,2022</span>
-            </p>
-            <p>08:24 PM IST</p>
-          </div>
 
-          <div className="story-content">
-            <div className="story-content-img-holder">
-              <img src={images.pathan} alt="" className="story-content-img" />
+            <div className="story-meta-info">
               <p>
-                EXCLUSIVE: 'My dad returned with a Singham tattoo after watching
-                the film’ reveals Cirkus actress Pooja Hegde
+                Written by <span className="author">{postData.author}</span>
               </p>
+              <p>
+                Published on <span className="date">Dec 20,2022</span>
+              </p>
+              <p>08:24 PM IST</p>
             </div>
-            <div className="story-content-text">
-              <h3>Ranveer Singh, Pooja Hegde</h3>
+
+            <div className="story-content">
+              <div className="story-content-img-holder">
+                <img
+                  src={postData.imageUrl}
+                  alt=""
+                  className="story-content-img"
+                />
+                {/* <img src={images.pathan} alt="" className="story-content-img" /> */}
+                <p>
+                  {/* EXCLUSIVE: 'My dad returned with a Singham tattoo after watching
+                the film’ reveals Cirkus actress Pooja Hegde */}
+                  {postData.summary}
+                </p>
+              </div>
+              <div className="story-content-text">
+                {/* <h3>Ranveer Singh, Pooja Hegde</h3>
               <p>
                 Ranveer Singh, Pooja Hegde, Jacqueline Fernandez, and others are
                 gearing up for the release of Rohit Shetty’s film Cirkus. Ahead
@@ -112,24 +138,28 @@ function StoryDetail() {
                 to do a Rohit Shetty film? As if it was in my control! So when I
                 told him (about Cirkus), he was very happy. When he met Rohit
                 sir, he was so excited.”
-              </p>
+              </p> */}
+                {postData.paragraph.split("\n").map((para, index) => {
+                  return <p key={`para+${index}`}>{para}</p>;
+                })}
+              </div>
             </div>
+
+            <a href="#" className="btn btn-story-detail">
+              <i className="fa-solid fa-hands-clapping"></i> Clap
+            </a>
           </div>
+        </section>
 
-          <a href="#" className="btn btn-story-detail">
-            <i className="fa-solid fa-hands-clapping"></i> Clap
-          </a>
+        {/* <StoryGenerator /> */}
+
+        <div className="recommended">
+          <RecommendedStories />
         </div>
-      </section>
 
-      {/* <StoryGenerator /> */}
-
-      <div className="recommended">
-        <RecommendedStories />
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    )
   );
 }
 

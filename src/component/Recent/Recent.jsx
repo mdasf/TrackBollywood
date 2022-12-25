@@ -3,31 +3,32 @@ import React from "react";
 import { Card } from "../index.js";
 import images from "../../assets";
 // import EditorialPicks from "../EditorialPicks/EditorialPicks";
+import "./Recent.css";
 
 const recentPostCardsData = [
   {
     imageURL: images.imgthumbnail1,
     tags: ["Blog"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
     author: "Afreen",
   },
   {
     imageURL: images.imgthumbnail4,
     tags: ["Health", "Food"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
     author: "Akib",
   },
 
   {
     imageURL: images.imgthumbnail3,
     tags: ["Lifestyles"],
-    heading: "The World Caters to Average People and Mediocre",
+    title: "The World Caters to Average People and Mediocre",
     author: "Asif",
   },
   {
     imageURL: images.pathan,
     tags: ["Meals", "Food"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
     author: "Akib",
   },
   {
@@ -178,7 +179,11 @@ function Recent() {
               </a>
             </li> */}
             {recentPostCardsData.map((card, index) => {
-              return <Card {...card} key={index} />;
+              return (
+                <li>
+                  <Card {...card} key={index} />
+                </li>
+              );
             })}
           </ul>
         </div>

@@ -18,6 +18,8 @@
 
 .header {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .navbar-list {
   display: flex;

@@ -57,7 +57,6 @@
 
     /* border radius */
     --radius-circle: 50%;
-    /* --radius-3: 3px; */
 
     --section-padding: 6rem;
   }
@@ -496,10 +495,10 @@
     color: var(--black);
   }
 
-  .two-section{
-    display: flex;
-    margin-inline: 10%;
-  }
+    .two-section{
+      display: flex;
+      margin-inline: 10%;
+    }
   .section-latest{
     flex: 2;
   }

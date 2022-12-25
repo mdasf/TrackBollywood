@@ -8,28 +8,28 @@ const recommendedCardsData = [
   {
     imageURL: images.imgthumbnail1,
     tags: ["Blog"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
   },
   {
     imageURL: images.imgthumbnail4,
     tags: ["Health", "Food"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
   },
 
   {
     imageURL: images.imgthumbnail3,
     tags: ["Lifestyles"],
-    heading: "The World Caters to Average People and Mediocre",
+    title: "The World Caters to Average People and Mediocre",
   },
   {
     imageURL: images.pathan,
     tags: ["Meals", "Food"],
-    heading: "Chorio and Potato with a Fried Egg for breakfast",
+    title: "Chorio and Potato with a Fried Egg for breakfast",
   },
   {
     imageURL: images.imgthumbnail2,
     tags: ["Travel"],
-    heading: "What I learned Living where everyone told me to avoid.",
+    title: "What I learned Living where everyone told me to avoid.",
   },
 ];
 
@@ -43,7 +43,11 @@ function RecommendedStories() {
           </div>
           <ul className="recommonded-stories">
             {recommendedCardsData.map((card, index) => {
-              return <Card {...card} key={index} />;
+              return (
+                <li>
+                  <Card {...card} key={index} />
+                </li>
+              );
             })}
             {/* <li>
               <a href="#" className="">

@@ -27,3 +27,8 @@
   margin-inline: auto;
   margin-block-start: 3rem;
 }
+
+.trending-stories-list .card-heading {
+  font-size: var(--fs5);
+  font-weight: var(--fw500);
+}

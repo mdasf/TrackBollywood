@@ -1,8 +1,25 @@
-.section-latest {
-  flex: 2;
-}
+/* .section-latest {
+  flex: 2.5;
+} */
 
 .section-latest .container-wrapper {
   width: 100%;
   /* margin-left: auto; */
+}
+
+.section-latest .card-meta-info {
+  font-size: var(--fs2);
+  align-items: center;
+}
+
+.section-latest .card {
+  transition: 200ms ease-in-out;
+}
+
+.section-latest .card:is(:hover, :focus-visible) {
+  scale: 1.05;
+}
+
+.section-latest span.author {
+  margin-left: 0.6rem;
 }

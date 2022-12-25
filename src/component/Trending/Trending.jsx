@@ -11,17 +11,17 @@ function Trending() {
     {
       imageURL: images.pathan,
       tags: ["Meals", "Food"],
-      heading: "Chorio and Potato with a Fried Egg for breakfast",
+      title: "Chorio and Potato with a Fried Egg for breakfast",
     },
     {
       imageURL: images.imgthumbnail2,
       tags: ["Travel"],
-      heading: "What I learned Living where everyone told me to avoid.",
+      title: "What I learned Living where everyone told me to avoid.",
     },
     {
       imageURL: images.imgthumbnail3,
       tags: ["Lifestyles"],
-      heading: "The World Caters to Average People and MediocreLifestyles.",
+      title: "The World Caters to Average People and MediocreLifestyles.",
     },
   ];
 
@@ -87,7 +87,11 @@ function Trending() {
               </Link>
             </li> */}
             {trendingCardsData.map((card, index) => {
-              return <Card {...card} key={index} />;
+              return (
+                <li>
+                  <Card {...card} key={index} />
+                </li>
+              );
             })}
           </ul>
 

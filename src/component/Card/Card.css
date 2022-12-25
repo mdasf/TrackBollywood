@@ -11,6 +11,7 @@
 
 .card img {
   transition: transform 200ms ease-in;
+  background-color: var(--color-pink-400);
 }
 
 .card:is(:hover, :focus-visible) .card-heading {
@@ -22,16 +23,25 @@
 }
 
 .card-meta-info {
-  font-size: var(--fs3);
+  /* font-size: var(--fs3); */
   display: flex;
-  gap: 2rem;
+  gap: 5rem;
+  align-items: center;
+  /* justify-content: space-between; */
 }
-.card-meta-info span {
+/* .card-meta-info span {
   color: gray;
   margin-block: 0.5rem;
+} */
+
+.card-meta-info,
+.card-meta-info .tags {
+  display: flex;
+  gap: 1rem;
+  font-size: var(--fs2);
 }
 
-.card-meta-info span::before {
+.card-meta-info .tag::before {
   content: "";
   display: inline-block;
   width: 3px;
@@ -50,7 +60,7 @@
   width: 100%;
 }
 
-.card .card-heading {
+/* .card .card-heading {
   font-size: var(--fs5);
   font-weight: var(--fw600);
-}
+} */

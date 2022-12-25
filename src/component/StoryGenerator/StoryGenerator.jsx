@@ -4,6 +4,7 @@ import images from "../../assets";
 import "./StoryGenerator.css";
 
 const StoryGenerator = ({ title, summary, author, paragraph, image }) => {
+  // console.log(typeof image);
   return (
     <section className="section preview">
       {/* <div className="container"> */}
@@ -24,13 +25,14 @@ const StoryGenerator = ({ title, summary, author, paragraph, image }) => {
       <div className="content">
         <div className="content-img-holder">
           <img src={image} alt="" className="content-img" />
-          <p>{summary}</p>
+          <p className="caption">{summary}</p>
         </div>
         <div className="content-text">
           {/* <p>{paragraph}</p> */}
-          {paragraph?.map((para) => (
-            <p className="content-paragraph">{para}</p>
-          ))}
+          {paragraph?.split("\n").map((para) => {
+            if (!para) return "";
+            return <p className="content-paragraph">{para}</p>;
+          })}
         </div>
       </div>
       {/* </div> */}
