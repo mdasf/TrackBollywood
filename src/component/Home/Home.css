@@ -1,0 +1,23 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  height: 50vh;
+}
+
+.loading-animation {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid var(--color-pink-400);
+  border-top-color: var(--color-pink-800);
+  animation: spin 800ms linear infinite;
+}
+
+/* Animate the circle by rotating it indefinitely */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -7,12 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-new line
-
 node_modules
 dist
 dist-ssr
 *.local
+.firebase
+.firebaserc
+firebase.json
+firestore.indexes.json
+*.rules
+
 
 package.json
 package-lock.json
