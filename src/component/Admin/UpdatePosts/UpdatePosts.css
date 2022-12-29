@@ -69,12 +69,13 @@
   align-items: center;
   transition: 200ms ease-in-out;
   padding: 2rem;
+  background: rgba(167, 157, 157, 0.14);
 }
 
 .update-post li:is(:hover, :focus-visible) {
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 20px #0000001a;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(170, 59, 59, 0.153);
 }
 
 .update-post .card-wrapper {

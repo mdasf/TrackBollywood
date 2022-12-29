@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; //data
 import { getStorage } from "firebase/storage"; //images
 
-// import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 // import "./dotenv.env";
 
@@ -20,8 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const firestore = initializeFireStore(app);
 
-// const auth = getAuth(app);
+const auth = getAuth(app);
 const firestore = getFirestore(app); //data
 const firestorage = getStorage(app); //images
 
-export { firestore, firestorage };
+export { auth, firestore, firestorage };

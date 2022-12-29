@@ -1,0 +1,19 @@
+.error-wrapper {
+  height: 50rem;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  /* border-block-start: 1px solid var(--clr-lime-dark); */
+}
+
+.error-wrapper h1 {
+  margin-block-end: 3rem;
+  color: var(--color-pink-800);
+}
+
+.error-wrapper .link {
+  color: var(--color-pink-800);
+  display: inline;
+  text-decoration: underline;
+  /* align-self: end; */
+}

@@ -4,10 +4,10 @@ import React from "react";
 import { Recent, EditorialPicks } from "../index.js";
 import "./RecentPlusEditorialPicks.css";
 
-function RecentPlusEditorialPicks() {
+function RecentPlusEditorialPicks({ data }) {
   return (
     <div className="section two-section">
-      <Recent />
+      <Recent data={data} />
       <EditorialPicks />
     </div>
   );

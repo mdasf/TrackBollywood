@@ -3,150 +3,61 @@ import React from "react";
 import { Card } from "../index.js";
 import images from "../../assets";
 import "./RecommendedStories.css";
+import { getRecentQuery } from "../Admin/queryApi.jsx";
 
-const recommendedCardsData = [
-  {
-    imageURL: images.imgthumbnail1,
-    tags: ["Blog"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
-  {
-    imageURL: images.imgthumbnail4,
-    tags: ["Health", "Food"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
+// const recommendedCardsData = [
+//   {
+//     imageURL: images.imgthumbnail1,
+//     tags: ["Blog"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
+//   {
+//     imageURL: images.imgthumbnail4,
+//     tags: ["Health", "Food"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
 
-  {
-    imageURL: images.imgthumbnail3,
-    tags: ["Lifestyles"],
-    title: "The World Caters to Average People and Mediocre",
-  },
-  {
-    imageURL: images.pathan,
-    tags: ["Meals", "Food"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
-  {
-    imageURL: images.imgthumbnail2,
-    tags: ["Travel"],
-    title: "What I learned Living where everyone told me to avoid.",
-  },
-];
+//   {
+//     imageURL: images.imgthumbnail3,
+//     tags: ["Lifestyles"],
+//     title: "The World Caters to Average People and Mediocre",
+//   },
+//   {
+//     imageURL: images.pathan,
+//     tags: ["Meals", "Food"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
+//   {
+//     imageURL: images.imgthumbnail2,
+//     tags: ["Travel"],
+//     title: "What I learned Living where everyone told me to avoid.",
+//   },
+// ];
 
 function RecommendedStories() {
+  const { data, loading, error } = getRecentQuery(5);
+
   return (
     <section className=" section-recommonded">
-      <div className="container">
-        <div className="container-wrapper">
-          <div className="heading hasbefore">
-            <p className="">Recommended</p>
-          </div>
+      {/* <div className="container"> */}
+      {error && <div>Unable to fetch..</div>}
+      <div className="container-wrapper">
+        <div className="heading hasbefore">
+          <p className="">Recommended</p>
+        </div>
+        {!loading && data && (
           <ul className="recommonded-stories">
-            {recommendedCardsData.map((card, index) => {
+            {data.map((card, index) => {
               return (
-                <li>
-                  <Card {...card} key={index} />
+                <li key={index}>
+                  <Card {...card} />
                 </li>
               );
             })}
-            {/* <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail1} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                    <div className="card-meta-info">
-                      <span className="tag">Blog</span>
-                      <p>
-                        By<span className="author">Afreen</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail4} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                    <div className="card-meta-info">
-                      <span className="tag">Health</span>
-                      <span className="tag">Food</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail3} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-heading">
-                      The World Caters to Average People and Mediocre
-                      Lifestyles.
-                    </div>
-                    <div className="card-meta-info">
-                      <span className="tag">Lifestyles</span>
-                      
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.pathan} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                    <div className="card-meta-info">
-                      <span className="tag">Meals</span>
-                      <span className="tag">Food</span>
-                      
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail2} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-heading">
-                      What I learned Living where everyone told me to avoid.
-                    </div>
-                    <div className="card-meta-info">
-                      <span className="tag">Travel</span>
-                     
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li> */}
           </ul>
-        </div>
+        )}
       </div>
+      {/* </div> */}
     </section>
   );
 }

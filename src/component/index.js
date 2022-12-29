@@ -11,6 +11,8 @@ import StoryGenerator from "./StoryGenerator/StoryGenerator";
 import Card from "./Card/Card";
 import RecommendedStories from "./RecommendedStories/RecommendedStories";
 import AdminContextProvider from "./context/admin-context";
+import Home from "./Home/Home";
+import Error from "./Error/Error";
 
 export {
   Header,
@@ -29,5 +31,7 @@ export {
   Card,
   RecommendedStories,
   AdminContextProvider,
+  Home,
+  Error,
   // UpdatePosts,
 };

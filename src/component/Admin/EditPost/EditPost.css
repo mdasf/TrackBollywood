@@ -120,6 +120,22 @@
   color: white;
 }
 
+.loading-data {
+  font-size: var(--fs4);
+
+  display: grid;
+  place-content: center;
+}
+
+.toast-error {
+  font-family: var(--ff-primary);
+  font-size: var(--fs3);
+  font-weight: 500;
+  color: var(--black);
+  /* color: var(--color-pink-800); */
+  width: 50rem;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   background-color: transparent;

@@ -17,7 +17,9 @@
 }
 
 .section-latest .card:is(:hover, :focus-visible) {
-  scale: 1.05;
+  /* scale: 1.05; */
+  /* box-shadow: 1px 3px -1px rgba(116, 114, 114, 0.173) 25%,
+    2px 5px -1px rgba(116, 114, 114, 0.282) 50%; */
 }
 
 .section-latest span.author {

@@ -37,13 +37,13 @@ const editorialPicksCardsData = [
 function EditorialPicks() {
   return (
     <section className="section-editor-choice">
-      <div className="container">
-        <div className="container-wrapper">
-          <div className="heading hasbefore">
-            <p className="">Editors Picked</p>
-          </div>
-          <ul className="editor-choice-stories">
-            {/* <li>
+      {/* <div className="container"> */}
+      <div className="container-wrapper">
+        <div className="heading hasbefore">
+          <p className="">Editors Picks</p>
+        </div>
+        <ul className="editor-choice-stories">
+          {/* <li>
               <a href="#" className="">
                 <div className="card">
                   <div className="card-img-holder">
@@ -148,12 +148,16 @@ function EditorialPicks() {
               </a>
             </li> */}
 
-            {editorialPicksCardsData.map((card, index) => {
-              return <li><Card {...card} key={index} /></li>;
-            })}
-          </ul>
-        </div>
+          {editorialPicksCardsData.map((card, index) => {
+            return (
+              <li key={index}>
+                <Card {...card} />
+              </li>
+            );
+          })}
+        </ul>
       </div>
+      {/* </div> */}
     </section>
   );
 }

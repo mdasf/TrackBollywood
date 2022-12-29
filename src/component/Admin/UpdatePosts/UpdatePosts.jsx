@@ -8,12 +8,13 @@ import useFetch from "../../useFetch.jsx";
 import { AdminContext } from "../../context/admin-context";
 
 import "./UpdatePosts.css";
+import { Link } from "react-router-dom";
 
 const UpdatePosts = () => {
-  console.log("render");
+  // console.log("render");
   // const [posts, setPosts] = useState([]);
 
-  const { isLoading } = useFetch(collection(firestore, "posts"));
+  const { isLoading, error } = useFetch(collection(firestore, "posts"));
 
   // console.log(data, isLoading);
 
@@ -21,6 +22,10 @@ const UpdatePosts = () => {
 
   const { posts, handleDeletePost, handleEditPost, handleUnpublishPost } =
     useContext(AdminContext);
+
+  // if (!isLoading) console.log(posts);
+
+  // return "";
 
   return (
     <section className="section-update">
@@ -57,8 +62,8 @@ const UpdatePosts = () => {
                   <div
                     className="update-btn-group"
                     onClick={(e) => {
-                      console.log(e.target.closest("li").id);
-                      console.log(e.target.dataset.action);
+                      // console.log(e.target.closest("li").id);
+                      // console.log(e.target.dataset.action);
                       e.preventDefault();
                       // const id = e.target.id;
                       const action = e.target.dataset.action;
@@ -73,22 +78,26 @@ const UpdatePosts = () => {
                       // handleUnpublishPost(e.target.closest("li").id);
                     }}
                   >
-                    <a href="#" className="btn update-btn" data-action="edit">
+                    <Link to="#" className="btn update-btn" data-action="edit">
                       <i className="fa-solid fa-pen-to-square"></i>
                       {/* <span>Edit</span> */}
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      to="#"
                       className="btn update-btn"
                       data-action="unpublish"
                     >
                       <i className="fa-solid fa-scissors"></i>
                       {/* <span>Unpublish</span> */}
-                    </a>
-                    <a href="#" className="btn update-btn" data-action="delete">
+                    </Link>
+                    <Link
+                      to="#"
+                      className="btn update-btn"
+                      data-action="delete"
+                    >
                       <i className="fa-solid fa-trash"></i>
                       {/* <span>Delete</span> */}
-                    </a>
+                    </Link>
                   </div>
                 </li>
               );

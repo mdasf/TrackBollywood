@@ -6,24 +6,29 @@ import images from "../../assets";
 
 import "./Trending.css";
 
-function Trending() {
-  const trendingCardsData = [
-    {
-      imageURL: images.pathan,
-      tags: ["Meals", "Food"],
-      title: "Chorio and Potato with a Fried Egg for breakfast",
-    },
-    {
-      imageURL: images.imgthumbnail2,
-      tags: ["Travel"],
-      title: "What I learned Living where everyone told me to avoid.",
-    },
-    {
-      imageURL: images.imgthumbnail3,
-      tags: ["Lifestyles"],
-      title: "The World Caters to Average People and MediocreLifestyles.",
-    },
-  ];
+function Trending({ data }) {
+  // const trendingCardsData = [
+  //   {
+  //     imageURL: images.pathan,
+  //     tags: ["Meals", "Food"],
+  //     title: "Chorio and Potato with a Fried Egg for breakfast",
+  //   },
+  //   {
+  //     imageURL: images.imgthumbnail2,
+  //     tags: ["Travel"],
+  //     title: "What I learned Living where everyone told me to avoid.",
+  //   },
+  //   {
+  //     imageURL: images.imgthumbnail3,
+  //     tags: ["Lifestyles"],
+  //     title: "The World Caters to Average People and MediocreLifestyles.",
+  //   },
+  // ];
+
+  // console.log(data);
+
+  const trendingData = data.slice(0, 4);
+  console.log("data:", data);
 
   return (
     <section className="section section-trending" id="#trending">
@@ -33,63 +38,10 @@ function Trending() {
         </div>
         <div className="trending-stories">
           <ul className="trending-stories-list">
-            {/* <li>
-              <Link to="/story-detail" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.pathan} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Meals</span>
-                      <span className="tag">Food</span>
-                    </div>
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail2} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Travel</span>
-                    </div>
-                    <div className="card-heading">
-                      What I learned Living where everyone told me to avoid.
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail3} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Lifestyles</span>
-                    </div>
-                    <div className="card-heading">
-                      The World Caters to Average People and Mediocre
-                      Lifestyles.
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </li> */}
-            {trendingCardsData.map((card, index) => {
+            {trendingData.map((card, index) => {
               return (
-                <li>
-                  <Card {...card} key={index} />
+                <li key={index}>
+                  <Card {...card} />
                 </li>
               );
             })}

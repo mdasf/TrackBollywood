@@ -5,38 +5,41 @@ import { Card } from "../index.js";
 
 import "./Popular.css";
 
-const popularUpperList = [
-  {
-    imageURL: images.imgthumbnail1,
-    tags: ["Blog"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
-  {
-    imageURL: images.imgthumbnail4,
-    tags: ["Health", "Food"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
-];
+// const popularUpperList = [
+//   {
+//     imageURL: images.imgthumbnail1,
+//     tags: ["Blog"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
+//   {
+//     imageURL: images.imgthumbnail4,
+//     tags: ["Health", "Food"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
+// ];
 
-const popularLowerList = [
-  {
-    imageURL: images.imgthumbnail3,
-    tags: ["Lifestyles"],
-    title: "The World Caters to Average People and Mediocre",
-  },
-  {
-    imageURL: images.pathan,
-    tags: ["Meals", "Food"],
-    title: "Chorio and Potato with a Fried Egg for breakfast",
-  },
-  {
-    imageURL: images.imgthumbnail2,
-    tags: ["Travel"],
-    title: "What I learned Living where everyone told me to avoid.",
-  },
-];
+// const popularLowerList = [
+//   {
+//     imageURL: images.imgthumbnail3,
+//     tags: ["Lifestyles"],
+//     title: "The World Caters to Average People and Mediocre",
+//   },
+//   {
+//     imageURL: images.pathan,
+//     tags: ["Meals", "Food"],
+//     title: "Chorio and Potato with a Fried Egg for breakfast",
+//   },
+//   {
+//     imageURL: images.imgthumbnail2,
+//     tags: ["Travel"],
+//     title: "What I learned Living where everyone told me to avoid.",
+//   },
+// ];
 
-function Popular() {
+function Popular({ data }) {
+  const upperList = data.slice(0, 2);
+  const lowerList = data.slice(2);
+
   return (
     <section className="section section-popular">
       <div className="container">
@@ -45,105 +48,21 @@ function Popular() {
         </div>
         <div className="popular-stories">
           <ul className="upper-list">
-            {/* <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail1} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Blog</span>
-                    </div>
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail4} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Health</span>
-                      <span className="tag">Food</span>
-                    </div>
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li> */}
-            {popularUpperList.map((card, index) => {
+            {upperList.map((card, index) => {
               return (
-                <li>
-                  <Card {...card} key={index} />
+                <li key={index}>
+                  <Card {...card} />
                 </li>
               );
             })}
           </ul>
           <ul className="lower-list">
-            {/* <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail3} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Lifestyles</span>
-                    </div>
-                    <div className="card-heading">
-                      The World Caters to Average People and Mediocre
-                      Lifestyles.
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.pathan} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Meals</span>
-                      <span className="tag">Food</span>
-                    </div>
-                    <div className="card-heading">
-                      Chorio and Potato with a Fried Egg for breakfast
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="">
-                <div className="card">
-                  <div className="card-img-holder">
-                    <img src={images.imgthumbnail2} alt="" />
-                  </div>
-                  <div className="card-content">
-                    <div className="card-meta-info">
-                      <span className="tag">Travel</span>
-                    </div>
-                    <div className="card-heading">
-                      What I learned Living where everyone told me to avoid.
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li> */}
-            {popularLowerList.map((card, index) => {
-              return <Card {...card} key={index} />;
+            {lowerList.map((card, index) => {
+              return (
+                <li key={index}>
+                  <Card {...card} />
+                </li>
+              );
             })}
           </ul>
         </div>

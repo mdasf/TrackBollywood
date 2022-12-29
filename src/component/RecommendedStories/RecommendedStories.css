@@ -1,16 +1,22 @@
 .section-recommonded {
-  /* position: absolute; */
-  /* top: 30%; */
-  /* right: 3rem; */
-  /* transform: translateY(-30%); */
-  /* margin-inline-start: 3rem; */
-  width: 40rem;
+  display: flex;
+  /* margin-block-end: 6rem; */
+}
+
+.section-recommonded .container-wrapper {
+  flex: 0 0 95%;
+  /* max-width: 40rem; */
+}
+
+.section-recommonded li {
+  box-shadow: 0 2px 5px -1px rgba(50, 50, 93, 0.25),
+    0 1px 3px -1px rgba(0, 0, 0, 0.3);
 }
 
 .section-recommonded .card-heading {
   /* width: 40%; */
   /* margin-left: 0; */
-  font-size: var(--fs3) !important;
+  /* font-size: var(--fs3) !important; */
 }
 
 .recommonded-stories {
@@ -19,32 +25,78 @@
   gap: 3rem;
 }
 
+/* .recommonded-stories {
+  flex: 0 0 50%;
+} */
+
 .recommonded-stories .card {
   flex-direction: row;
-  gap: 2rem;
+  /* gap: 3rem; */
 }
 
 .recommonded-stories .card-img-holder {
-  width: 10rem;
+  /* width: 10rem; */
+  /* flex: 0 0 30%; */
+  width: 12rem;
   aspect-ratio: 1/1;
   /* height: 20rem; */
 }
 
 .recommonded-stories img {
   /* transform: unset; */
-  width: 10rem;
-  object-fit: contain;
+  /* width: 10rem; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .recommonded-stories .card span {
   display: inline-block;
 }
 
-.section-recommonded .heading {
-  font-size: var(--fs3);
+.recommonded-stories .heading {
+  font-size: var(--fs2);
   color: var(--color-pink-800);
+}
+
+.recommonded-stories .card-content {
+  /* flex: 0 0 60%; */
+  flex: 1;
+  /* padding */
+}
+
+.recommonded-stories .card-meta-info {
+  font-size: var(--fs2);
+  align-items: center;
+}
+
+.recommonded-stories .card-meta-info .tag {
+  color: var(--color-pink-800);
+}
+
+.recommonded-stories .card-meta-info .author {
+  display: none;
 }
 
 /* .section-recommonded {
   flex: 1;
 } */
+
+@media screen and (max-width: 1000px) {
+  .section-recommonded .container-wrapper {
+    flex: 0 0 70%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .section-recommonded .container-wrapper {
+    flex: 0 0 80%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .section-recommonded .container-wrapper {
+    flex: 0 0 100%;
+    padding: 3rem;
+  }
+}

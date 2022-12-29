@@ -29,9 +29,13 @@ const StoryGenerator = ({ title, summary, author, paragraph, image }) => {
         </div>
         <div className="content-text">
           {/* <p>{paragraph}</p> */}
-          {paragraph?.split("\n").map((para) => {
+          {paragraph?.split("\n").map((para, index) => {
             if (!para) return "";
-            return <p className="content-paragraph">{para}</p>;
+            return (
+              <p className="" key={index}>
+                {para}
+              </p>
+            );
           })}
         </div>
       </div>

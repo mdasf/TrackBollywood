@@ -9,7 +9,7 @@ const ctx = {
   // logout: () => {},
   // signUp: () => {},
   // login: () => {},
-  testingvalue: 10,
+  // testingvalue: 10,
   // posts: null,
   // setPosts: () => {},
   updatePosts: (posts) => {},
@@ -22,8 +22,8 @@ export const AdminContext = createContext(ctx);
 
 const AdminContextProvider = (props) => {
   // const [isPageLoading, setIsPageLoading] = useState(false);
-  const [posts, setPosts] = useState();
-  const [isEditing, setIsEditing] = useState(false);
+  const [posts, setPosts] = useState([]);
+  // const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   // const { isLoading } = useFetch(collection(firestore, "posts"));
@@ -32,6 +32,8 @@ const AdminContextProvider = (props) => {
   //     posts;
   //   });
   // };
+
+  // if (posts) console.log(posts);
 
   const handleDeletePost = async (postId) => {
     await deleteDoc(doc(firestore, "posts", postId));
@@ -44,9 +46,9 @@ const AdminContextProvider = (props) => {
     // const data = posts.filter((post) => post.pid == postId);
     // console.log(data[0]);
 
-    setIsEditing(true);
-    navigate(`/admin/createPost/${postId}`);
-    console.log("post edited");
+    // setIsEditing(true);
+    navigate(`/auth/createPost/${postId}`);
+    // console.log("post edited");
   };
 
   const handleUnpublishPost = async (postId) => {
@@ -55,21 +57,21 @@ const AdminContextProvider = (props) => {
       // timestamp: Date.now(),
     }).then((postId) => {
       console.log("post unpublished");
-      // navigate("/admin/updatePosts");
+      navigate("/admin/updatePosts");
     });
   };
 
   useEffect(() => {
-    console.log(posts);
+    // console.log(posts);
   }, [posts]);
 
   return (
     <>
       <AdminContext.Provider
         value={{
-          testingvalue: 10,
-          isEditing,
-          setIsEditing,
+          // testingvalue: 10,
+          // isEditing,
+          // setIsEditing,
           posts,
           setPosts,
           handleDeletePost,

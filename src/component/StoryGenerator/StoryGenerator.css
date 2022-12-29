@@ -74,13 +74,12 @@
   margin-block-end: 2rem;
 }
 
-.content-paragraph::before {
+/* .content-paragraph::before {
   content: "";
   display: inline-block;
-  /* background: var(--color-pink-800); */
   width: 5rem;
   height: 2rem;
-}
+} */
 
 /* .btn-preview {
   font-size: var(--fs3);

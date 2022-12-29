@@ -4,7 +4,9 @@ import { AdminContext } from "./context/admin-context";
 
 const useFetch = (url) => {
   // const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const { setPosts } = useContext(AdminContext);
 
@@ -23,36 +25,46 @@ const useFetch = (url) => {
   };
 
   const getData = () => {
-    const customPromise = new Promise(async (resolve, reject) => {
-      try {
-        const q = query(url);
-        let temp = [];
-        const querySnap = await getDocs(q);
+    // const customPromise = new Promise(async (resolve, reject) => {
+    try {
+      setLoading(true);
+      // console.log("called");
+      const q = query(url);
+      let temp = [];
+      getDocs(q).then((querySnap) => {
         querySnap.forEach((doc) => {
           // console.log(doc.id, " => ", doc.data());
           temp.push({ postId: doc.id, postInfo: doc.data() });
         });
-        resolve(temp);
-      } catch (error) {
-        reject(error);
-        console.log(error);
-      }
-    });
+        const extractedData = extractDataFromDocs(temp);
+        // console.log(extractedData);
+        setLoading(false);
+        setError("");
+
+        setPosts(() => {
+          return [...extractedData];
+        });
+      });
+    } catch (error) {
+      setLoading(false);
+      setError(error);
+      console.log(error);
+    }
+    // });
     // const result = await customPromise;
     // setData(result);
-    // setIsLoading(false);
-    customPromise
-      .then((data) => {
-        // setData(() => data);
-        // console.log(data);
+    // setLoading(false);
+    // customPromise
+    //   .then((data) => {
+    // setData(() => data);
+    // console.log(data);
 
-        setPosts(extractDataFromDocs(data));
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-      });
+    // setLoading(false);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   setLoading(false);
+    // });
   };
 
   useEffect(() => {
@@ -60,7 +72,7 @@ const useFetch = (url) => {
   }, []);
 
   // console.log(data);
-  return { isLoading };
+  return { loading, error };
 };
 
 export default useFetch;

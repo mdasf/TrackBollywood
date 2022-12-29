@@ -37,7 +37,9 @@ function CreatePost() {
   const [postDetail, setPostDetail] = useState();
   // const { posts } = useContext(AdminContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { id } = useParams();
+  const [postId, setPostId] = useState("");
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -73,22 +75,42 @@ function CreatePost() {
   // }, [id]);
 
   useEffect(() => {
-    if (id) setIsEditing(true);
+    if (id) {
+      setIsEditing(true);
+      setPostId(id);
+    }
   }, []);
 
-  const showPreview = ({ title, summary, author, paragraph, image }) => {
+  const showPreview = ({
+    title,
+    summary,
+    author,
+    paragraph,
+    image,
+    tags,
+    // pid,
+  }) => {
     setPostDetail({
       title: title,
       summary: summary,
       author: author,
       paragraph: paragraph,
       image: image,
+
       // image: URL.createObjectURL(image),
     });
 
     localStorage.setItem(
       "form",
-      JSON.stringify({ title, summary, author, paragraph, image })
+      JSON.stringify({
+        title,
+        summary,
+        author,
+        paragraph,
+        image,
+        tags: tags,
+        // postId: pid,
+      })
     );
   };
 
@@ -98,75 +120,13 @@ function CreatePost() {
   ) => {
     console.log("submit()");
 
-    // console.log(title, summary, author, paragraph, imageFile, tags);
+    setIsSubmitting(true);
+    // return "";
 
-    // const storageRef = ref(firestorage, `images/${imageFile.name}`);
-    // const uploadTask = uploadBytesResumable(storageRef, imageFile);
-    // console.log("uploaded");
-    // uploadTask.on(
-    //   "state_changed",
-    //   () => {},
-    //   (error) => {
-    //     console.log(error);
-    //   },
-    //   () => {
-    //     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //       // console.log(currentUser);
-    //       console.log(downloadURL);
-    //       const storyCollectionRef = collection(firestore, "posts");
-    //       // const tagsCollectionRef = collection(firestore, "tags");
-    //       addDoc(storyCollectionRef, {
-    //         // postId: postId,
-    //         title: title,
-    //         summary: summary,
-    //         author: author,
-    //         // paragraph: paragraph.join("\n"),
-    //         paragraph: paragraph,
-    //         tags: tags,
-    //         imageUrl: downloadURL,
-    //         timestamp: Date.now(),
-    //         publish: true,
-    //         postReads: 0,
-    //         postClaps: 0,
-    //       }).then((postId) => {
-    //         // setStoryUploading(false);
-    //         // navigate("/");
-    //         let prevPostIds;
-    //         tags.forEach(async (tag) => {
-    //           const docSnap = await getDoc(doc(firestore, "tags", `${tag}`));
-    //           if (!docSnap.exists()) {
-    //             setDoc(doc(firestore, "tags", `${tag}`), {
-    //               tagname: `${tag}`,
-    //               postIds: [postId],
-    //             });
-    //           } else {
-    //             // setDoc(doc(firestore, "tags", `${tag}`), {tagname:`${tag}`}, { merge: true });
-    //             console.log(`docSnap:+${docSnap.data()}`);
-    //             prevPostIds = docSnap.data();
-    //             updateDoc(doc(firestore, "tags", `${tag}`), {
-    //               postIds: arrayUnion(postId),
-    //             });
-    //           }
-    //         });
-    //         // window.localStorage.removeItem("form");
-    //         // setPostDetail({
-    //         //   title: "",
-    //         //   summary: "",
-    //         //   author: "",
-    //         //   paragraph: [],
-    //         //   image: "",
-
-    //         // });
-    //         // localStorage.removeItem("isEditing");
-    //         setIsEditing(false);
-    //         navigate("/admin/updatePosts");
-    //       });
-    //     });
-    //   }
-    // );
     if (imageFile) {
-      image = uploadImage(imageFile);
+      image = await uploadImage(imageFile);
     }
+
     const storyCollectionRef = collection(firestore, "posts");
     addDoc(storyCollectionRef, {
       title: title,
@@ -182,6 +142,7 @@ function CreatePost() {
     }).then((postId) => {
       setTagsCollection(tags, postId);
       setIsEditing(false);
+      setIsSubmitting(false);
       navigate("/admin/updatePosts");
     });
   };
@@ -218,11 +179,12 @@ function CreatePost() {
 
   const setTagsCollection = (tags, postId) => {
     // const tagsCollectionRef = collection(firestore, "tags");
+    console.log(tags);
 
     tags.forEach(async (tag) => {
       const docSnap = await getDoc(doc(firestore, "tags", `${tag}`));
       if (!docSnap.exists()) {
-        setDoc(doc(firestore, "tags", `${tag}`), {
+        await setDoc(doc(firestore, "tags", `${tag}`), {
           tagname: `${tag}`,
           postIds: [postId],
         });
@@ -230,7 +192,7 @@ function CreatePost() {
         // setDoc(doc(firestore, "tags", `${tag}`), {tagname:`${tag}`}, { merge: true });
         console.log(`docSnap:+${docSnap.data()}`);
         // prevPostIds = docSnap.data();
-        updateDoc(doc(firestore, "tags", `${tag}`), {
+        await updateDoc(doc(firestore, "tags", `${tag}`), {
           postIds: arrayUnion(postId),
         });
       }
@@ -242,6 +204,7 @@ function CreatePost() {
     imageFile
   ) => {
     console.log("update()");
+    setIsSubmitting(true);
     console.log(imageFile, image);
     const postRef = doc(firestore, "posts", id);
 
@@ -256,25 +219,34 @@ function CreatePost() {
       paragraph: paragraph,
       tags: tags,
       imageUrl: image,
-      timestamp: Date.now(),
-    }).then((postId) => {
-      setTagsCollection(tags, postId);
+    }).then(() => {
+      // console.log(pid);
+      setTagsCollection(tags, id);
       setIsEditing(false);
+      setIsSubmitting(true);
       navigate("/admin/updatePosts");
     });
   };
 
   return (
     <div className="createpost-container">
-      <EditPost
-        // postDetail={postDetail}
-        pid={id}
-        isEditing={isEditing}
-        showPreview={showPreview}
-        onSubmitPost={onSubmitPost}
-        onUpdatePost={onUpdatePost}
-      />
-      <PreviewPost postDetail={postDetail} />
+      {isSubmitting && (
+        <div className="loading">
+          <div className="loading-animation"></div>
+          <p>Submitting Post...</p>
+        </div>
+      )}
+      <>
+        <EditPost
+          // postDetail={postDetail}
+          pid={id}
+          isEditing={isEditing}
+          showPreview={showPreview}
+          onSubmitPost={onSubmitPost}
+          onUpdatePost={onUpdatePost}
+        />
+        <PreviewPost postDetail={postDetail} />{" "}
+      </>
     </div>
   );
 }

@@ -10,9 +10,10 @@ import images from "../../assets";
 
 import "./StoryDetail.css";
 import useFetch from "../useFetch.jsx";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../../firebase-config.js";
 import { useParams } from "react-router-dom";
+import CountClaps from "./CountClaps.jsx";
 
 // const storyData = {
 //   title:,
@@ -38,14 +39,37 @@ function StoryDetail() {
   const { pid } = useParams();
   console.log(pid);
 
+  const updateClapCount = async (postClaps) => {
+    await updateDoc(doc(firestore, "posts", pid), {
+      postClaps: postClaps,
+    });
+  };
+
+  const getTime = (timestamp) => {
+    let [date, time] = new Date(timestamp).toLocaleString().split(",");
+    time = time.slice(0, 5) + " " + time.slice(8);
+    return { date, time };
+  };
+  let dateAndtime;
   useEffect(() => {
+    console.log(pid);
     const getPost = async () => {
-      const docSnap = await getDoc(doc(firestore, "posts", `${pid}`));
-      // console.log(docSnap.data());
-      setPostData(docSnap.data());
+      // const docSnap = await getDoc(doc(firestore, "posts", `${pid}`));
+      getDoc(doc(firestore, "posts", `${pid}`)).then((docSnap) => {
+        setPostData(() => {
+          return {
+            ...docSnap.data(),
+          };
+        });
+      });
     };
     getPost();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pid]);
+
+  if (postData) {
+    dateAndtime = getTime(postData.timestamp);
+  }
 
   return (
     postData && (
@@ -53,27 +77,26 @@ function StoryDetail() {
         <Header />
         <section className="section story-detail">
           <div className="container">
-            <h1 className="story-title">
-              {/* EXCLUSIVE: 'My dad returned with a Singham tattoo after watching the
-            film’ reveals Cirkus actress Pooja Hegde */}
-              {postData.title}
-            </h1>
+            <h1 className="story-title">{postData.title}</h1>
 
-            <p className="story-summary">
-              {/* In an exclusive conversation with Pinkvilla, Cirkus actress Pooja
-            Hegde shared that her father is a huge fan of Rohit Shetty. So much
-            so, that he got a Singham tattoo after watching the movie! */}
-              {postData.summary}
-            </p>
+            <p className="story-summary">{postData.summary}</p>
 
             <div className="story-meta-info">
               <p>
                 Written by <span className="author">{postData.author}</span>
               </p>
               <p>
-                Published on <span className="date">Dec 20,2022</span>
+                Published on{" "}
+                <span className="date">
+                  {dateAndtime ? dateAndtime.date : ""}
+                </span>
               </p>
-              <p>08:24 PM IST</p>
+              <p>
+                <span className="time">
+                  {dateAndtime ? dateAndtime.time : ""}
+                </span>{" "}
+                IST
+              </p>
             </div>
 
             <div className="story-content">
@@ -83,79 +106,30 @@ function StoryDetail() {
                   alt=""
                   className="story-content-img"
                 />
-                {/* <img src={images.pathan} alt="" className="story-content-img" /> */}
-                <p>
-                  {/* EXCLUSIVE: 'My dad returned with a Singham tattoo after watching
-                the film’ reveals Cirkus actress Pooja Hegde */}
-                  {postData.summary}
-                </p>
+                <p>{postData.summary}</p>
               </div>
               <div className="story-content-text">
-                {/* <h3>Ranveer Singh, Pooja Hegde</h3>
-              <p>
-                Ranveer Singh, Pooja Hegde, Jacqueline Fernandez, and others are
-                gearing up for the release of Rohit Shetty’s film Cirkus. Ahead
-                of the film’s release, Pinkvilla got into an exclusive
-                conversation with the team of Cirkus at the first-ever Pinkvilla
-                MasterclassName. During the candid conversation, Rohit Shetty
-                shared that he makes family movies and that he knows his core
-                audience. Pooja Hegde added to that and revealed that her father
-                is a huge fan of Rohit Shetty and his movies. So much so, that
-                he got a Singham tattoo after watching the movie! Rohit Shetty
-                on why
-              </p>
-
-              <h3>Cirkus is set in the 60s </h3>
-              <p>
-                Cirkus is set in the 60s and Ranveer Singh plays a double role
-                in this comedy of errors. When asked about Cirkus being set in
-                the 60s, Rohit Shetty told Pinkvilla, “I always wanted to make
-                this kind of an era film and I thought this is the right script
-                because when there’s a double role, there's confusion, and the
-                first thing that comes to your mind is 'Itna confusion kyu hai?
-                Wo Facebook ya Instagram pe jaake kyu nahi dekh lete wo kaun
-                hai, kaha rehta hai? We wanted a period where there was no such
-                kind of technology.” He further added, “They say that I make
-                films for the masses but this is for our parents, and I think
-                that is my core audience- which is a family audience. So this
-                one is for them.”
-              </p>
-              <h3>Pooja Hegde reveals her father got a Singham tattoo </h3>
-              <p>
-                Pooja Hegde reveals her father got a Singham tattoo after
-                watching the film Ranveer and Pooja Hegde both agreed with Rohit
-                Shetty’s statement. Ranveer said, “Rohit Shetty is like a dad
-                favourite. Everyone's dad's number one favourite director is
-                Rohit Shetty." Meanwhile, Pooja Hegde shared that her father is
-                such a huge fan that he has a Singham tattoo.
-              </p>
-              <p>
-                “My dad went to watch Singham and came back with a Singham
-                tattoo from the theatre. He told me it was a real tattoo so I'm
-                like ‘You got Singham written?’” She further added that he kept
-                praising the film, and also asked her when she will do a Rohit
-                Shetty film. “Throughout my career, he's like when are you going
-                to do a Rohit Shetty film? As if it was in my control! So when I
-                told him (about Cirkus), he was very happy. When he met Rohit
-                sir, he was so excited.”
-              </p> */}
-                {postData.paragraph.split("\n").map((para, index) => {
-                  return <p key={`para+${index}`}>{para}</p>;
+                {postData.paragraph?.split("\n").map((para, index) => {
+                  if (!para) return "";
+                  return (
+                    <p className="content-paragraph" key={index}>
+                      {para}
+                    </p>
+                  );
                 })}
               </div>
             </div>
 
-            <a href="#" className="btn btn-story-detail">
-              <i className="fa-solid fa-hands-clapping"></i> Clap
-            </a>
+            <CountClaps
+              postClaps={postData.postClaps}
+              updateClapCount={updateClapCount}
+            />
           </div>
+          <RecommendedStories />
         </section>
 
-        {/* <StoryGenerator /> */}
-
-        <div className="recommended">
-          <RecommendedStories />
-        </div>
+        {/* <div className="recommended"> */}
+        {/* </div> */}
 
         <Footer />
       </div>

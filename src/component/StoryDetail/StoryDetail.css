@@ -1,49 +1,71 @@
 .story-page-wrapper {
-  position: relative;
+  /* position: relative; */
+}
+
+.story-detail {
+  display: flex;
+  gap: 5rem;
+  padding-inline-start: 10rem;
 }
 
 .story-page-wrapper .recommended {
-  position: absolute;
+  /* position: absolute;
   top: 30%;
-  right: 3rem;
-  transform: translateY(-30%);
-  margin-inline-start: 3rem;
+  right: 3rem; */
+  /* transform: translateY(-30%); */
+  /* margin-inline-start: 3rem; */
+  /* flex: 0 0 40%; */
 }
 
 .story-detail .container {
-  width: 55%;
-  margin-left: 10%;
+  /* width: 55%; */
+  flex: 0 0 60%;
+  /* max-width: 110rem; */
+
+  /* margin-left: 10%; */
   /* width: 90%; */
   overflow: hidden;
   color: var(--black);
-  font-weight: 500;
+  font-weight: var(--fw500);
   line-height: 1.6;
 }
 
-.story-detail h3 {
+.story-content h3 {
   font-size: var(--fs5);
   font-weight: var(--fw700);
   margin-block: 1.5rem;
 }
 
+/* .story-content p {
+  margin-block: 2rem;
+} */
+
 .story-title {
   font-size: var(--fs8);
+  line-height: 1.3;
 }
 
 .story-summary {
-  margin-block: 2rem;
+  margin-block: 4rem 2rem;
   /* margin-bottom: 4rem; */
 }
 
 .story-meta-info {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
-  margin-block-end: 4rem;
+  /* margin-block-end: 4rem; */
+  margin-block: 2rem 4rem;
 }
 
 .story-meta-info .author,
-.story-meta-info .date {
+.story-meta-info .date,
+.story-meta-info .time {
   color: var(--color-pink-800);
+}
+
+.story-meta-info p {
+  /* margin-block: 2rem; */
 }
 
 .story-meta-info p::after {
@@ -59,20 +81,27 @@
 .story-content-img-holder {
   width: 70%;
   /* height:auto  */
+  margin-block: 3rem 5rem;
   margin-inline: auto;
 }
 
+/* .story-content-img-holder img{} */
+
 .story-content-img-holder p {
-  font-size: calc(var(--fs2) + 0.4rem);
+  margin-block-start: 1.5rem;
+  font-size: calc(var(--fs1) + 0.4rem);
   text-align: center;
 }
 
 .story-content-img {
   width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .story-content-text {
-  margin-block: 3rem;
+  margin-block-end: 3rem;
+  line-height: 1.8;
 }
 
 .story-content-text h3 {
@@ -80,16 +109,99 @@
 }
 
 .btn-story-detail {
-  font-size: var(--fs3);
-  text-transform: uppercase;
-  padding: 1rem 2rem;
-  border-radius: 100px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
   margin-inline: auto;
+  user-select: none;
 }
 .btn-story-detail i {
   margin-right: 1rem;
 }
 
-.btn-story-detail:is(:hover, :focus-visible) i {
+.story-detail .section-recommonded .container-wrapper {
+  margin-block-start: 20rem;
+}
+
+/* .btn-story-detail:is(:hover, :focus-visible) i {
   color: var(--white);
+} */
+/* 
+@media (max-width: 800px) {
+  .story-meta-info {
+    text-align: center;
+  }
+} */
+
+@media (max-width: 1100px) {
+  .story-detail {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .story-detail .container {
+    padding-inline: 10rem;
+  }
+
+  .story-detail .section-recommonded {
+    margin-inline: 15%;
+    margin-inline: auto;
+  }
+
+  .story-detail .section-recommonded .container-wrapper {
+    margin-block-start: 0;
+    margin-inline: auto;
+    /* margin-block-start: 20rem; */
+  }
+}
+
+@media (max-width: 1000px) {
+  .story-content-img-holder {
+    width: 100%;
+  }
+  .story-title {
+    font-size: var(--fs7);
+    line-height: 1.3;
+  }
+}
+@media (max-width: 800px) {
+  .story-detail .container {
+    /* width: 55%; */
+    /* flex: 0 0 90%; */
+    padding-inline: 6rem;
+    /* font-size: var(--fs3); */
+  }
+
+  .story-title {
+    font-size: var(--fs6);
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 550px) {
+  .story-detail .container {
+    /* width: 55%; */
+    flex: 0 0 100%;
+    padding-inline: 2rem;
+  }
+  .story-detail .container,
+  .summary,
+  .story-content-img-holder p {
+    font-size: var(--fs2);
+  }
+  .story-title {
+    font-size: var(--fs5);
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 400px) {
+  .story-detail .story-title,
+  .story-detail .story-meta-info {
+    text-align: center;
+  }
+  .story-content-img-holder {
+    width: 100%;
+  }
 }

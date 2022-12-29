@@ -32,17 +32,18 @@ function Header() {
               </Link>
             </li>
             {/* <li className="navbar-item"> */}
-            <div className="search">
-              <input className="search-input" type="text" />
-              <label htmlFor="checkbox">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </label>
-              <input id="checkbox" type="checkbox" />
-            </div>
+
             {/* </li> */}
           </ul>
         </nav>
       </header>
+      {/* <div className="search">
+        <input className="search-input" type="text" />
+        <label htmlFor="checkbox">
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </label>
+        <input id="checkbox" type="checkbox" />
+      </div> */}
     </section>
   );
 }

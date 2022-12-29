@@ -23,17 +23,17 @@ function Footer() {
 
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link1
+              Trending
             </a>
           </li>
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link2
+              Popular
             </a>
           </li>
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link3
+              Recent
             </a>
           </li>
         </ul>
@@ -42,24 +42,24 @@ function Footer() {
 
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link1
+              About
             </a>
           </li>
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link2
+              Disclaimer
             </a>
           </li>
           <li className="footer-item">
             <a href="#" className="footer-link">
-              Link3
+              Terms & Condition
             </a>
           </li>
         </ul>
       </div>
 
       <div className="copyright">
-        <p>Copyright reserved to @asif 2022</p>
+        <p>Copyright reserved to @akib&asif co. 2022</p>
       </div>
     </section>
   );

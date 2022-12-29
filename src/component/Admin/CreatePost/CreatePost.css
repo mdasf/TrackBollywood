@@ -5,4 +5,86 @@
   max-width: 180rem;
   margin-inline: auto;
   height: 100%;
+
+  position: relative;
+}
+/* .loading-animation::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(228, 139, 139, 0.296);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.createpost-container .loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(216, 153, 153, 0.659);
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.createpost-container .loading-animation {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid var(--color-pink-400);
+  border-top-color: var(--color-pink-800);
+  animation: spin 800ms linear infinite;
+}
+
+.createpost-container .loading-animation p {
+  font-size: var(--fs5);
+  font-weight: 400;
+  color: var(--black);
+}
+
+/*@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+ */
+
+/* Style the loading animation */
+/* Safari */
+/* .loading {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 0.5s linear infinite; 
+  animation: spin 0.5s linear infinite;
+} */
+
+/* Animate the loading animation */
+/* @-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+} */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
