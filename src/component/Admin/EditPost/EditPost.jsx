@@ -188,11 +188,11 @@ function EditPost({
   }
 
   useEffect(() => {
-    console.log(pid, "running");
+    // console.log(pid, "running");
 
     if (pid) {
       const formData = JSON.parse(localStorage.getItem("form"));
-      console.log("formData", formData);
+      // console.log("formData", formData);
       // const t =
       // console.log(t);
       if (!hasEmptyProperties(formData)) {
@@ -207,13 +207,13 @@ function EditPost({
             // postId: pid,
           };
         });
-        console.log("form not emtpy", form);
+        // console.log("form not emtpy", form);
       } else {
-        console.log("funcion ran");
+        // console.log("funcion ran");
         setLoading(true);
         (async () => {
           const docSnap = await getDoc(doc(firestore, "posts", pid));
-          console.log(docSnap.data());
+          // console.log(docSnap.data());
           let data = { ...docSnap.data() };
           console.log(data.imageUrl);
           setForm(() => {
@@ -232,7 +232,7 @@ function EditPost({
       }
 
       // }
-      console.log(isEditing);
+      // console.log(isEditing);
     }
   }, []);
 
@@ -249,7 +249,7 @@ function EditPost({
     //   "form",
     //   JSON.stringify({ title, summary, author, paragraph ,image,tags})
     // );
-    console.log("showpreview ran");
+    // console.log("showpreview ran");
     return () => {
       localStorage.removeItem("form");
     };

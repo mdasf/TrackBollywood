@@ -143,7 +143,7 @@ function CreatePost() {
       setTagsCollection(tags, postId);
       setIsEditing(false);
       setIsSubmitting(false);
-      navigate("/admin/updatePosts");
+      navigate("/auth/updatePosts");
     });
   };
 
@@ -224,7 +224,7 @@ function CreatePost() {
       setTagsCollection(tags, id);
       setIsEditing(false);
       setIsSubmitting(true);
-      navigate("/admin/updatePosts");
+      navigate("/auth/updatePosts");
     });
   };
 

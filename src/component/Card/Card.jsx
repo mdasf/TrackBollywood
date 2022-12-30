@@ -7,7 +7,7 @@ function Card({ imageURL = "", tags, author = "", title = "", pid = "" }) {
   // console.log(imageURL, tags, heading);
   // console.log(size);
 
-  console.log(tags, pid);
+  // console.log(tags, pid);
 
   return (
     // <li>

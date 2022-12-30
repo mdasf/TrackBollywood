@@ -7,28 +7,36 @@ import images from "../../assets";
 import "./Trending.css";
 
 function Trending({ data }) {
-  // const trendingCardsData = [
-  //   {
-  //     imageURL: images.pathan,
-  //     tags: ["Meals", "Food"],
-  //     title: "Chorio and Potato with a Fried Egg for breakfast",
-  //   },
-  //   {
-  //     imageURL: images.imgthumbnail2,
-  //     tags: ["Travel"],
-  //     title: "What I learned Living where everyone told me to avoid.",
-  //   },
-  //   {
-  //     imageURL: images.imgthumbnail3,
-  //     tags: ["Lifestyles"],
-  //     title: "The World Caters to Average People and MediocreLifestyles.",
-  //   },
-  // ];
+  //get array of type[timestamp,claps]
 
-  // console.log(data);
+  // const arrayOfTimestampAndClaps = data.map((story) => {
+  //   return [story.timestamp, story.postClaps];
+  // });
 
-  const trendingData = data.slice(0, 4);
-  console.log("data:", data);
+  const postTrendingFactor = data.map((post) => {
+    // const postedDuration = new Date() - new Date(post.timestamp).getTime();
+    const postedDuration = (
+      (new Date().getTime() - post.timestamp) /
+      (24 * 60 * 60 * 1000)
+    ).toFixed(2);
+
+    // console.log(post.postClaps, postedDuration);
+
+    return { ...post, tf: post.postClaps / postedDuration };
+  });
+
+  // console.log(postTrendingFactor);
+
+  let trendingData = postTrendingFactor.sort((a, b) => {
+    return b.tf - a.tf;
+  });
+  console.log(postTrendingFactor);
+
+  trendingData = trendingData.slice(0, 4);
+
+  // console.log("data:", data);
+
+  // return "";
 
   return (
     <section className="section section-trending" id="#trending">

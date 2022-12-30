@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+.firebase
+.firebaserc
+firebase.json
+firebase-debug.log
+firestore.*
+vite.config.js
+storage.*
+public
+
+
+
 package.json
 package-lock.json
 

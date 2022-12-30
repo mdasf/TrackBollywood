@@ -13,7 +13,7 @@ const Dashboard = ({ page }) => {
   const navigate = useNavigate();
 
   const { currentUser, logout, emailtemp } = useContext(AuthContext);
-  console.log(page, emailtemp);
+  // console.log(page, emailtemp);
 
   const logoutHandler = async () => {
     try {

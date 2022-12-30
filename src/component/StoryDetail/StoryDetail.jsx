@@ -36,8 +36,9 @@ import CountClaps from "./CountClaps.jsx";
 
 function StoryDetail() {
   const [postData, setPostData] = useState();
+  const [loading, setLoading] = useState(false);
   const { pid } = useParams();
-  console.log(pid);
+  // console.log("rendering story-detail");
 
   const updateClapCount = async (postClaps) => {
     await updateDoc(doc(firestore, "posts", pid), {
@@ -53,6 +54,7 @@ function StoryDetail() {
   let dateAndtime;
   useEffect(() => {
     console.log(pid);
+    setLoading(true);
     const getPost = async () => {
       // const docSnap = await getDoc(doc(firestore, "posts", `${pid}`));
       getDoc(doc(firestore, "posts", `${pid}`)).then((docSnap) => {
@@ -61,10 +63,11 @@ function StoryDetail() {
             ...docSnap.data(),
           };
         });
+        setLoading(false);
       });
     };
     getPost();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, [pid]);
 
   if (postData) {
@@ -72,68 +75,77 @@ function StoryDetail() {
   }
 
   return (
-    postData && (
-      <div className="story-page-wrapper">
-        <Header />
-        <section className="section story-detail">
-          <div className="container">
-            <h1 className="story-title">{postData.title}</h1>
+    <>
+      <Header />
+      {loading && (
+        <div className="overlay">
+          <div className="loading-animation"></div>
+          <p>Loading Post..</p>
+        </div>
+      )}
+      {!loading && postData && (
+        <div className="story-page-wrapper">
+          <section className="section story-detail">
+            <div className="container">
+              <h1 className="story-title">{postData.title}</h1>
 
-            <p className="story-summary">{postData.summary}</p>
+              <p className="story-summary">{postData.summary}</p>
 
-            <div className="story-meta-info">
-              <p>
-                Written by <span className="author">{postData.author}</span>
-              </p>
-              <p>
-                Published on{" "}
-                <span className="date">
-                  {dateAndtime ? dateAndtime.date : ""}
-                </span>
-              </p>
-              <p>
-                <span className="time">
-                  {dateAndtime ? dateAndtime.time : ""}
-                </span>{" "}
-                IST
-              </p>
+              <div className="story-meta-info">
+                <p>
+                  Written by <span className="author">{postData.author}</span>
+                </p>
+                <p>
+                  Published on{" "}
+                  <span className="date">
+                    {dateAndtime ? dateAndtime.date : ""}
+                  </span>
+                </p>
+                <p>
+                  <span className="time">
+                    {dateAndtime ? dateAndtime.time : ""}
+                  </span>{" "}
+                  IST
+                </p>
+              </div>
+
+              <div className="story-content">
+                <div className="story-content-img-holder">
+                  <img
+                    src={postData.imageUrl}
+                    alt=""
+                    className="story-content-img"
+                  />
+                  <p>{postData.summary}</p>
+                </div>
+                <div className="story-content-text">
+                  {postData.paragraph?.split("\n").map((para, index) => {
+                    if (!para) return "";
+                    return (
+                      <p className="content-paragraph" key={index}>
+                        {para}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <CountClaps
+                // pid={pid}
+                postClaps={postData.postClaps}
+                updateClapCount={updateClapCount}
+              />
             </div>
 
-            <div className="story-content">
-              <div className="story-content-img-holder">
-                <img
-                  src={postData.imageUrl}
-                  alt=""
-                  className="story-content-img"
-                />
-                <p>{postData.summary}</p>
-              </div>
-              <div className="story-content-text">
-                {postData.paragraph?.split("\n").map((para, index) => {
-                  if (!para) return "";
-                  return (
-                    <p className="content-paragraph" key={index}>
-                      {para}
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
+            <RecommendedStories />
+          </section>
 
-            <CountClaps
-              postClaps={postData.postClaps}
-              updateClapCount={updateClapCount}
-            />
-          </div>
-          <RecommendedStories />
-        </section>
-
-        {/* <div className="recommended"> */}
-        {/* </div> */}
-
-        <Footer />
-      </div>
-    )
+          {/* <div className="recommended"> */}
+          {/* </div> */}
+        </div>
+      )}
+      <Footer />
+    </>
   );
 }
 

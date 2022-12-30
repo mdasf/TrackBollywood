@@ -25,6 +25,7 @@ const useFetchData = (query, type) => {
         imageURL: postInfo.imageUrl,
         paragraph: postInfo.paragraph,
         tags: postInfo.tags,
+        postClaps: postInfo.postClaps,
         timestamp: postInfo.timestamp,
         pid: postId,
       };

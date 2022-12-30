@@ -1,30 +1,42 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./auth-context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./Login.css";
 
 function Login() {
   // use;
-  const { currentUser, login, emailtemp } = useContext(AuthContext);
+  const { login, emailtemp, loading, error, setError } =
+    useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  // let errorMessage = "";
-
-  console.log(emailtemp);
-
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    console.log(email, password);
 
-    try {
-      console.log(email, password);
-      login(email, password);
-    } catch (err) {
-      setError(true);
-      // errorMessage = "Failed to Login !";
-    }
+    login(email, password);
   };
+
+  // !loading &&
+  //   error &&
+  //   toast.error("wrong credentials", {
+  //     position: toast.POSITION.TOP_LEFT,
+  //     className: "toast-error",
+  //   });
+
+  useEffect(() => {
+    !loading &&
+      error &&
+      toast.error("wrong credentials", {
+        position: toast.POSITION.TOP_LEFT,
+        className: "toast-error",
+      });
+    setError("");
+  }, [error]);
+
+  // console.log(loading);
 
   return (
     // {loading && div}
@@ -57,6 +69,7 @@ function Login() {
           </form>
         </div>
       )}{" "}
+      <ToastContainer />
     </>
   );
 }

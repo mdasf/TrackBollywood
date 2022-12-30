@@ -57,7 +57,7 @@ const AdminContextProvider = (props) => {
       // timestamp: Date.now(),
     }).then((postId) => {
       console.log("post unpublished");
-      navigate("/admin/updatePosts");
+      navigate("/auth/updatePosts");
     });
   };
 

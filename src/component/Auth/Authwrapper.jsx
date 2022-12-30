@@ -5,7 +5,7 @@ import AuthContextProvider, { AuthContext } from "./auth-context";
 import PrivateRoute from "./PrivateRoute";
 
 const Authwrapper = () => {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
   return (
     <AuthContextProvider>
@@ -16,15 +16,15 @@ const Authwrapper = () => {
         <Route
           path="/"
           element={
-            <PrivateRoute>
-              <Dashboard page={"dashboard"} />
+            <PrivateRoute page={"/"}>
+              <Dashboard page={"/"} />
             </PrivateRoute>
           }
         />
         <Route
           path="dashboard"
           element={
-            <PrivateRoute>
+            <PrivateRoute page={"dashboard"}>
               <Dashboard page={"dashboard"} />
             </PrivateRoute>
           }
@@ -32,7 +32,7 @@ const Authwrapper = () => {
         <Route
           path="createPost"
           element={
-            <PrivateRoute>
+            <PrivateRoute page={"CreatePost"}>
               <CreatePost />
             </PrivateRoute>
           }
@@ -41,7 +41,7 @@ const Authwrapper = () => {
         <Route
           path="createPost/:id"
           element={
-            <PrivateRoute>
+            <PrivateRoute page={"CreatePostId"}>
               <CreatePost />
             </PrivateRoute>
           }

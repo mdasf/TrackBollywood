@@ -79,6 +79,7 @@
 
     font-size: var(--fs3);
     font-weight: 400;
+    position: relative;
   }
 
 

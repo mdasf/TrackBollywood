@@ -7,8 +7,10 @@ import "./RecentPlusEditorialPicks.css";
 function RecentPlusEditorialPicks({ data }) {
   return (
     <div className="section two-section">
-      <Recent data={data} />
-      <EditorialPicks />
+      <div className="container">
+        <Recent data={data} />
+        <EditorialPicks />
+      </div>
     </div>
   );
 }

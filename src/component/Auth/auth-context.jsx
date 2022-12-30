@@ -7,7 +7,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
-import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 
 const defaultCtx = {
@@ -21,17 +20,29 @@ const defaultCtx = {
 export const AuthContext = createContext(defaultCtx);
 
 const AuthContextProvider = (props) => {
-  const [emailtemp, setEmailtemp] = useState("asif");
-  // const [password, setPassword] = useState("");
-  const [currentUser, setCurrentUser] = useState(null);
+  // const [emailtemp, setEmailtemp] = useState("asif");
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const login = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password).then((credential) => {
-      // setCurrentUser(user);
-      console.log(credential);
-      navigate("/auth/dashboard");
-    });
+  const login = async (email, password) => {
+    setLoading(true);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((credential) => {
+        setUser(credential.user);
+        setLoading(false);
+
+        // console.log(credential);
+        navigate("/auth/dashboard");
+      })
+      .catch((error) => {
+        // console.log(error);
+        setError(error);
+        setLoading(false);
+        // throw error;
+        // navigate("/auth");
+      });
   };
 
   const logout = () => {
@@ -41,8 +52,11 @@ const AuthContextProvider = (props) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      // console.log("onAuthStateChanged");
+      setUser(user);
+      setLoading(false);
     });
 
     return unsubscribe;
@@ -51,10 +65,13 @@ const AuthContextProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        currentUser,
+        user,
         login,
         logout,
-        emailtemp,
+        loading,
+        error,
+        setError,
+        // emailtemp,
       }}
     >
       {props.children}

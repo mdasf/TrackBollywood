@@ -17,6 +17,10 @@ form {
   padding: 1rem;
 }
 
+.login-container input:is(:focus) {
+  background: none;
+}
+
 .login-container button {
   margin-block: 4rem;
   background-color: var(--color-pink-500);

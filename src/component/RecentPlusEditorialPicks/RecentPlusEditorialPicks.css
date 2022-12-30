@@ -1,9 +1,9 @@
-.two-section {
+.two-section .container {
   display: flex;
   /* gap: 3rem; */
   /* flex-wrap: wrap; */
   justify-content: space-between;
-  margin-inline: 10%;
+  margin-inline: auto;
 }
 
 .two-section li {
@@ -26,10 +26,10 @@
 }
 
 .two-section .section-latest {
-  flex: 0 0 45%;
+  flex: 0 0 55%;
 }
 .two-section .section-editor-choice {
-  flex: 0 0 45%;
+  flex: 0 0 40%;
 }
 
 .latest-stories,
@@ -88,7 +88,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .two-section {
+  .two-section .container {
     flex-direction: column;
   }
 }

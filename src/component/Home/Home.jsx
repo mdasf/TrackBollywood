@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getPopularQuery, getRecentQuery } from "../Admin/queryApi.jsx";
+import {
+  getPopularQuery,
+  getRecentQuery,
+  getTrendingQuery,
+} from "../Admin/queryApi.jsx";
 
 import {
   Trending,
@@ -14,6 +18,12 @@ import "./Home.css";
 const Home = () => {
   // const { data, loading, error } = getRecentQuery(4);
   // const { data, loading, error } = getRecentQuery(5);
+
+  const {
+    data: trendingData,
+    loading: trendingLoading,
+    error: trendingError,
+  } = getTrendingQuery(5);
 
   const {
     data: recentData,
@@ -43,7 +53,7 @@ const Home = () => {
       )}
       {recentData && popularData && (
         <>
-          <Trending data={recentData} />
+          <Trending data={trendingData} />
           <Popular data={popularData} />
           <RecentPlusEditorialPicks data={recentData} />
         </>
